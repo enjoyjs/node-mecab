@@ -14,7 +14,7 @@ npm i @enjoyjs/node-mecab
 
 ## API
 
-### analyze(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
+### analyze(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): Promise\<string\>
 
 ```js
 import { analyze } from '@enjoyjs/node-mecab';
@@ -29,7 +29,7 @@ EOS
 
 ```
 
-### tokenize(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
+### tokenize(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): Promise\<[Token](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L61)[]\>
 
 ```js
 import { tokenize } from '@enjoyjs/node-mecab';
@@ -96,7 +96,7 @@ tokenize('こんにちは世界').then(console.log);
 ]
 ```
 
-### wakatsu(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
+### wakatsu(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): Promise\<string[][]\>
 
 ```js
 import { wakatsu } from '@enjoyjs/node-mecab';
@@ -106,6 +106,17 @@ wakatsu('こんにちは世界').then(console.log);
 
 ```bash
 [ [ 'こんにちは', '世界' ] ]
+```
+
+## async/await
+
+```js
+import { tokenize } from '@enjoyjs/node-mecab';
+
+(async () => {
+  const tokens = await tokenize('こんにちは世界');
+  console.log(tokens);
+})();
 ```
 
 ## ライセンス
