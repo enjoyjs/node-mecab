@@ -14,7 +14,7 @@ npm i @enjoyjs/node-mecab
 
 ## API
 
-### analyze
+### analyze(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
 
 ```js
 import { analyze } from '@enjoyjs/node-mecab';
@@ -29,7 +29,7 @@ EOS
 
 ```
 
-### tokenize
+### tokenize(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
 
 ```js
 import { tokenize } from '@enjoyjs/node-mecab';
@@ -96,7 +96,7 @@ tokenize('こんにちは世界').then(console.log);
 ]
 ```
 
-### wakatsu
+### wakatsu(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10))
 
 ```js
 import { wakatsu } from '@enjoyjs/node-mecab';
