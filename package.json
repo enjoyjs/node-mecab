@@ -22,7 +22,9 @@
     "type": "git",
     "url": "git+https://github.com/enjoyjs/node-mecab.git"
   },
-  "keywords": [],
+  "keywords": [
+    "mecab"
+  ],
   "author": "Yusei Yamamoto <yuseiyamamoto.dev@outlook.com>",
   "license": "MIT",
   "bugs": {
