@@ -2,6 +2,10 @@
 
 MeCab wrapper for Node.js
 
+## 前提条件
+
+MeCabがローカルにインストールされている必要があります。
+
 ## インストール
 
 ```bash
