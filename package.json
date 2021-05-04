@@ -1,6 +1,6 @@
 {
   "name": "@enjoyjs/node-mecab",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MeCab wrapper for Node.js",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
