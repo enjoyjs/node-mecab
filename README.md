@@ -19,7 +19,8 @@ npm i @enjoyjs/node-mecab
 ```js
 import { analyze } from '@enjoyjs/node-mecab';
 
-analyze('こんにちは世界').then(console.log);
+const result = await analyze('こんにちは世界');
+console.log(result);
 ```
 
 ```bash
@@ -29,12 +30,22 @@ EOS
 
 ```
 
+### analyzeSync(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): string
+
+```js
+import { analyzeSync } from '@enjoyjs/node-mecab';
+
+const result = analyzeSync('こんにちは世界');
+console.log(result);
+```
+
 ### tokenize(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): Promise\<[Token](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L61)[]\>
 
 ```js
 import { tokenize } from '@enjoyjs/node-mecab';
 
-tokenize('こんにちは世界').then(console.log);
+const result = await tokenize('こんにちは世界');
+console.log(result);
 ```
 
 ```bash
@@ -96,27 +107,35 @@ tokenize('こんにちは世界').then(console.log);
 ]
 ```
 
+### tokenizeSync(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): [Token](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L61)[]
+
+```js
+import { tokenizeSync } from '@enjoyjs/node-mecab';
+
+const result = tokenizeSync('こんにちは世界');
+console.log(result);
+```
+
 ### wakatsu(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): Promise\<string[][]\>
 
 ```js
 import { wakatsu } from '@enjoyjs/node-mecab';
 
-wakatsu('こんにちは世界').then(console.log);
+const result = await wakatsu('こんにちは世界');
+console.log(result);
 ```
 
 ```bash
 [ [ 'こんにちは', '世界' ] ]
 ```
 
-## async/await
+### wakatsuSync(text: string, options?: [MecabOptions](https://github.com/enjoyjs/node-mecab/blob/HEAD/src/types.ts#L10)): string[][]
 
 ```js
-import { tokenize } from '@enjoyjs/node-mecab';
+import { wakatsuSync } from '@enjoyjs/node-mecab';
 
-(async () => {
-  const tokens = await tokenize('こんにちは世界');
-  console.log(tokens);
-})();
+const result = wakatsuSync('こんにちは世界');
+console.log(result);
 ```
 
 ## ライセンス

@@ -1,22 +1,13 @@
-import {exec as _exec} from 'child_process';
+import {exec as _exec, execSync} from 'child_process';
 import dargs from 'dargs';
 import {quote} from 'shell-quote';
 import {promisify} from 'util';
 import type {Feature, MecabOptions, Stat, Token} from './types';
 
-export {analyze, tokenize, wakatsu};
+export {analyze, analyzeSync, tokenize, tokenizeSync, wakatsu, wakatsuSync};
 export type {MecabOptions};
 
 const exec = promisify(_exec);
-
-const isMecabInstalled = async (): Promise<boolean> => {
-	try {
-		await exec('mecab --version');
-		return true;
-	} catch {
-		return false;
-	}
-};
 
 const mecabNaToUndefined = (text?: string): string | undefined => {
 	return text === '*' ? undefined : text;
@@ -85,18 +76,31 @@ const parseDump = (dump: string): Token[] => {
 		});
 };
 
+const mecabCommand = (
+	text: string,
+	options?: Readonly<MecabOptions>
+): string => {
+	const input = quote(['echo', text]);
+	const mecab = quote(['mecab', ...dargs(options ?? {})]);
+	const command = `${input} | ${mecab}`;
+	return command;
+};
+
 const analyze = async (
 	text: string,
 	options?: Readonly<MecabOptions>
 ): Promise<string> => {
-	if (!(await isMecabInstalled())) {
-		throw new Error('`mecab` is not installed');
-	}
-
-	const input = quote(['echo', text]);
-	const mecab = quote(['mecab', ...dargs(options ?? {})]);
-	const command = `${input} | ${mecab}`;
+	const command = mecabCommand(text, options);
 	const {stdout: rawOutput} = await exec(command);
+	return rawOutput;
+};
+
+const analyzeSync = (
+	text: string,
+	options?: Readonly<MecabOptions>
+): string => {
+	const command = mecabCommand(text, options);
+	const rawOutput = execSync(command, {encoding: 'utf8'});
 	return rawOutput;
 };
 
@@ -109,11 +113,31 @@ const tokenize = async (
 	return tokens;
 };
 
+const tokenizeSync = (
+	text: string,
+	options?: Readonly<MecabOptions>
+): Token[] => {
+	const dump = analyzeSync(text, {...options, outputFormatType: 'dump'});
+	const tokens = parseDump(dump);
+	return tokens;
+};
+
 const wakatsu = async (
 	text: string,
 	options?: Readonly<MecabOptions>
 ): Promise<string[][]> => {
 	const wakati = await analyze(text, {...options, outputFormatType: 'wakati'});
+	return wakati
+		.trim()
+		.split('\n')
+		.map((row) => row.trim().split(' '));
+};
+
+const wakatsuSync = (
+	text: string,
+	options?: Readonly<MecabOptions>
+): string[][] => {
+	const wakati = analyzeSync(text, {...options, outputFormatType: 'wakati'});
 	return wakati
 		.trim()
 		.split('\n')
