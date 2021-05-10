@@ -5,9 +5,11 @@
     ":timezone(Asia/Tokyo)",
     ":automergeMinor",
     ":automergeBranch",
-    ":semanticCommitType(build)",
+    ":semanticCommitTypeAll(build)",
     ":prNotPending",
+    ":noUnscheduledUpdates",
     ":label(dependencies)",
+    "group:allNonMajor",
     "schedule:weekdays"
   ],
   "rangeStrategy": "bump"
