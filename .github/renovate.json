@@ -3,7 +3,7 @@
   "extends": [
     "config:base",
     ":timezone(Asia/Tokyo)",
-    ":automergeMinor",
+    ":automergePatch",
     ":automergeBranch",
     ":semanticCommitTypeAll(build)",
     ":prNotPending",
