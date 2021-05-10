@@ -7,10 +7,25 @@
     ":automergeBranch",
     ":semanticCommitTypeAll(build)",
     ":prNotPending",
-    ":noUnscheduledUpdates",
     ":label(dependencies)",
-    "group:allNonMajor",
     "schedule:weekdays"
   ],
-  "rangeStrategy": "bump"
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "extends": [
+        ":disableRenovate",
+        "packages:linters"
+      ],
+      "matchPackageNames": [
+        "prettier",
+        "standard",
+        "xo"
+      ],
+      "groupName": "linters and formatters"
+    }
+  ]
 }
