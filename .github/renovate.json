@@ -6,7 +6,6 @@
     ":automergeMinor",
     ":automergeBranch",
     ":semanticCommitType(build)",
-    ":prNotPending",
     ":label(dependencies)",
     "schedule:weekdays"
   ],
