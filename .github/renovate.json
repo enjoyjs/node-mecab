@@ -4,7 +4,6 @@
     "config:base",
     ":timezone(Asia/Tokyo)",
     ":automergeMinor",
-    ":automergeBranch",
     ":semanticCommitType(build)",
     ":label(dependencies)",
     "schedule:weekdays"
