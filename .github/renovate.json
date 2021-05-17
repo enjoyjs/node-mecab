@@ -1,31 +1,5 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":timezone(Asia/Tokyo)",
-    ":automergePatch",
-    ":automergeBranch",
-    ":semanticCommitTypeAll(build)",
-    ":prNotPending",
-    ":label(dependencies)",
-    "schedule:weekdays"
-  ],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "rangeStrategy": "bump",
-  "packageRules": [
-    {
-      "extends": [
-        ":disableRenovate",
-        "packages:linters"
-      ],
-      "matchPackageNames": [
-        "prettier",
-        "standard",
-        "xo"
-      ],
-      "groupName": "linters and formatters"
-    }
+    "github>enjoyjs/renovate-config"
   ]
 }
