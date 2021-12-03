@@ -1,11 +1,11 @@
-import {exec as _exec, execSync} from 'child_process';
+import {exec as _exec, execSync} from 'node:child_process';
+import {promisify} from 'node:util';
 import dargs from 'dargs';
 import {quote} from 'shell-quote';
-import {promisify} from 'util';
 import type {Feature, MecabOptions, Stat, Token} from './types';
 
+export type {Feature, MecabOptions, Stat, Token} from './types';
 export {analyze, analyzeSync, tokenize, tokenizeSync, wakatsu, wakatsuSync};
-export type {MecabOptions};
 
 const exec = promisify(_exec);
 
@@ -31,7 +31,7 @@ const parseFeature = (feature?: string): Feature => {
 		conjugatedForm,
 		basicForm,
 		reading,
-		pronunciation
+		pronunciation,
 	] = feature?.split(',') ?? [];
 
 	return {
@@ -39,13 +39,13 @@ const parseFeature = (feature?: string): Feature => {
 		posSubs: [
 			mecabNaToUndefined(posSub1),
 			mecabNaToUndefined(posSub2),
-			mecabNaToUndefined(posSub3)
+			mecabNaToUndefined(posSub3),
 		],
 		conjugatedType: mecabNaToUndefined(conjugatedType),
 		conjugatedForm: mecabNaToUndefined(conjugatedForm),
 		basicForm: mecabNaToUndefined(basicForm),
 		reading: mecabNaToUndefined(reading),
-		pronunciation: mecabNaToUndefined(pronunciation)
+		pronunciation: mecabNaToUndefined(pronunciation),
 	};
 };
 
@@ -71,14 +71,14 @@ const parseDump = (dump: string): Token[] => {
 				beta: Number(values[12]),
 				prob: Number(values[13]),
 				cost: Number(values[14]),
-				_: values.slice(15)
+				_: values.slice(15),
 			};
 		});
 };
 
 const mecabCommand = (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): string => {
 	const input = quote(['echo', text]);
 	const mecab = quote(['mecab', ...dargs(options ?? {})]);
@@ -88,7 +88,7 @@ const mecabCommand = (
 
 const analyze = async (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): Promise<string> => {
 	const command = mecabCommand(text, options);
 	const {stdout: rawOutput} = await exec(command);
@@ -97,7 +97,7 @@ const analyze = async (
 
 const analyzeSync = (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): string => {
 	const command = mecabCommand(text, options);
 	const rawOutput = execSync(command, {encoding: 'utf8'});
@@ -106,7 +106,7 @@ const analyzeSync = (
 
 const tokenize = async (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): Promise<Token[]> => {
 	const dump = await analyze(text, {...options, outputFormatType: 'dump'});
 	const tokens = parseDump(dump);
@@ -115,7 +115,7 @@ const tokenize = async (
 
 const tokenizeSync = (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): Token[] => {
 	const dump = analyzeSync(text, {...options, outputFormatType: 'dump'});
 	const tokens = parseDump(dump);
@@ -124,7 +124,7 @@ const tokenizeSync = (
 
 const wakatsu = async (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): Promise<string[][]> => {
 	const wakati = await analyze(text, {...options, outputFormatType: 'wakati'});
 	return wakati
@@ -135,7 +135,7 @@ const wakatsu = async (
 
 const wakatsuSync = (
 	text: string,
-	options?: Readonly<MecabOptions>
+	options?: Readonly<MecabOptions>,
 ): string[][] => {
 	const wakati = analyzeSync(text, {...options, outputFormatType: 'wakati'});
 	return wakati

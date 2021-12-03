@@ -1,4 +1,13 @@
 {
-  "xo.enable": true,
-  "xo.format.enable": true
+  "xo.format.enable": true,
+  "[typescript]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "samverschueren.linter-xo"
+  },
+  "[javascript]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "samverschueren.linter-xo"
+  }
 }

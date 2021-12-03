@@ -5,7 +5,8 @@ name: Node.js Lint
 
 on:
   push:
-  pull_request:
+    branches:
+    - '**'
 
 jobs:
   build:
@@ -14,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:

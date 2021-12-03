@@ -4,7 +4,7 @@ import {
 	tokenize,
 	tokenizeSync,
 	wakatsu,
-	wakatsuSync
+	wakatsuSync,
 } from '../src';
 
 const text = 'こんにちは世界';
@@ -12,7 +12,7 @@ const text = 'こんにちは世界';
 void Promise.all([analyze(text), tokenize(text), wakatsu(text)]).then(
 	(results) => {
 		for (const result of results) console.log(result);
-	}
+	},
 );
 
 const syncs = [analyzeSync, tokenizeSync, wakatsuSync];
