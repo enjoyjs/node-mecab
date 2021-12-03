@@ -12,9 +12,9 @@
   ],
   "scripts": {
     "build": "run-p build:*",
-    "build:main": "node esbuild.config.js",
+    "build:main": "node esbuild.config.cjs",
     "build:types": "tsc -p tsconfig.types.json",
-    "test": "ts-node test",
+    "test": "ts-node -T test",
     "lint": "tsc --noEmit && xo",
     "lint:fix": "tsc --noEmit && xo --fix"
   },
@@ -35,11 +35,12 @@
     "@enjoyjs/tsconfig": "^3.0.0",
     "@types/node": "^16.11.11",
     "@types/shell-quote": "^1.7.1",
+    "@types/xo": "^0.39.2",
     "esbuild": "^0.14.1",
     "npm-run-all": "^4.1.5",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
-    "xo": "^0.39.1"
+    "xo": "^0.47.0"
   },
   "dependencies": {
     "dargs": "^7.0.0",

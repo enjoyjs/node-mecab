@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const process = require('process');
 const {build} = require('esbuild');
 
 /** @type {import('esbuild').BuildOptions} */
@@ -9,14 +10,14 @@ const cjs = {
 	platform: 'node',
 	format: 'cjs',
 	target: 'node12',
-	minify: true
+	minify: true,
 };
 
 /** @type {import('esbuild').BuildOptions} */
 const esm = {
 	...cjs,
 	outdir: './lib/esm',
-	format: 'esm'
+	format: 'esm',
 };
 
 Promise.all([build(cjs), build(esm)])
