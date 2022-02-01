@@ -33,7 +33,7 @@
   "homepage": "https://github.com/enjoyjs/node-mecab#readme",
   "devDependencies": {
     "@enjoyjs/tsconfig": "^3.0.0",
-    "@types/node": "^16.11.21",
+    "@types/node": "^16.11.22",
     "@types/shell-quote": "^1.7.1",
     "@types/xo": "^0.39.2",
     "esbuild": "^0.14.16",
