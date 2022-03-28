@@ -140,6 +140,11 @@ const result = wakatsuSync("こんにちは世界");
 console.log(result);
 ```
 
+## Contribution
+
+Issue、Pull requestは日本語で構いません。
+不具合等ありましたらPull requestを投げていただけると幸いです。
+
 ## ライセンス
 
 [MIT License](LICENSE)
