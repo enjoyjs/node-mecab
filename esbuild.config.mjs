@@ -1,14 +1,12 @@
-#!/usr/bin/env node
-
-const process = require('process');
-const {build} = require('esbuild');
+import {build} from 'esbuild';
 
 /** @type {import('esbuild').BuildOptions} */
 const cjs = {
 	entryPoints: ['./src/index.ts'],
-	outdir: './lib/cjs',
+	outfile: './lib/index.cjs',
 	platform: 'node',
 	format: 'cjs',
+	mainFields: ['module', 'main'],
 	target: 'node12',
 	minify: true,
 };
@@ -16,10 +14,8 @@ const cjs = {
 /** @type {import('esbuild').BuildOptions} */
 const esm = {
 	...cjs,
-	outdir: './lib/esm',
+	outfile: './lib/index.mjs',
 	format: 'esm',
 };
 
-Promise.all([build(cjs), build(esm)])
-	.then(() => console.log('build success'))
-	.catch(() => process.exit(1));
+Promise.all([build(cjs), build(esm)]).then(() => console.log('build success'));

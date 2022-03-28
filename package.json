@@ -2,9 +2,15 @@
   "name": "@enjoyjs/node-mecab",
   "version": "0.2.0",
   "description": "MeCab wrapper for Node.js",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/types/index.d.ts",
+  "type": "module",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.cjs"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
   "sideEffects": false,
   "files": [
     "lib/",
@@ -12,9 +18,11 @@
   ],
   "scripts": {
     "build": "run-p build:*",
-    "build:main": "node esbuild.config.cjs",
+    "build:main": "node esbuild.config.mjs",
     "build:types": "tsc -p tsconfig.types.json",
-    "test": "ts-node -T test",
+    "test": "run-s test:*",
+    "test:cjs": "node test/index.cjs",
+    "test:esm": "node test/index.mjs",
     "lint": "tsc --noEmit && xo",
     "lint:fix": "tsc --noEmit && xo --fix"
   },
@@ -38,8 +46,7 @@
     "@types/xo": "^0.39.2",
     "esbuild": "^0.14.28",
     "npm-run-all": "^4.1.5",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3",
+    "typescript": "4.7.0-dev.20220323",
     "xo": "^0.48.0"
   },
   "dependencies": {

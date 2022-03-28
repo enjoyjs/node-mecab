@@ -1,4 +1,4 @@
-type OutputFormatType =
+export type OutputFormatType =
 	| 'wakati'
 	| 'yomi'
 	| 'chasen'
@@ -7,6 +7,8 @@ type OutputFormatType =
 	| 'none'
 	| 'em';
 
+// Ref 1: `mecab --help`
+// Ref 2: http://www.mwsoft.jp/programming/munou/mecab_command.html (Japanese)
 export interface MecabOptions {
 	rcfile?: string;
 	dicdir?: string;
@@ -33,6 +35,7 @@ export interface MecabOptions {
 	output?: string;
 }
 
+// Ref: https://taku910.github.io/mecab/#usage-tools (Japanese)
 export interface Feature {
 	// 品詞
 	pos?: string;
@@ -58,6 +61,7 @@ export interface Feature {
 
 export type Stat = 'NORMAL' | 'UNKNOWN' | 'BOS' | 'EOS';
 
+// Ref: http://taku910.github.io/mecab/bindings.html (Japanese)
 export interface Token {
 	// Node id
 	id: number;
