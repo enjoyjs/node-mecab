@@ -2,9 +2,15 @@ import {exec as _exec, execSync} from 'node:child_process';
 import {promisify} from 'node:util';
 import dargs from 'dargs';
 import {quote} from 'shell-quote';
-import type {Feature, MecabOptions, Stat, Token} from './types';
+import type {Feature, MecabOptions, Stat, Token} from './types.js';
 
-export type {Feature, MecabOptions, Stat, Token} from './types';
+export type {
+	Feature,
+	MecabOptions,
+	Stat,
+	Token,
+	OutputFormatType,
+} from './types.js';
 export {analyze, analyzeSync, tokenize, tokenizeSync, wakatsu, wakatsuSync};
 
 const exec = promisify(_exec);
@@ -13,11 +19,11 @@ const mecabNaToUndefined = (text?: string): string | undefined => {
 	return text === '*' ? undefined : text;
 };
 
-const getStat = (statId?: string): Stat | undefined => {
+const getStat = (statId?: string): Stat => {
+	if (statId === undefined || statId === '') return 'UNKNOWN';
 	const stats: Stat[] = ['NORMAL', 'UNKNOWN', 'BOS', 'EOS'];
 	const id = Number(statId);
-	if (Number.isNaN(id)) return;
-	const stat = stats[id];
+	const stat = stats[id] ?? 'UNKNOWN';
 	return stat;
 };
 
@@ -65,7 +71,7 @@ const parseDump = (dump: string): Token[] => {
 				lcAttr: Number(values[6]),
 				posid: Number(values[7]),
 				charType: Number(values[8]),
-				stat: getStat(values[9]) ?? 'UNKNOWN',
+				stat: getStat(values[9]),
 				isbest: Boolean(Number(values[10])),
 				alpha: Number(values[11]),
 				beta: Number(values[12]),

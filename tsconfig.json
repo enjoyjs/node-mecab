@@ -1,8 +1,8 @@
 {
-  "extends": "@enjoyjs/tsconfig/tsconfig.json",
+  "extends": "@enjoyjs/tsconfig",
   "include": ["src"],
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "Node12",
     "exactOptionalPropertyTypes": false
   }
 }
