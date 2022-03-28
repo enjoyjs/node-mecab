@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>enjoyjs/renovate-config"
-  ]
+  "extends": ["github>enjoyjs/renovate-config"]
 }
