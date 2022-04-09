@@ -17,7 +17,7 @@ npm i @enjoyjs/node-mecab
 
 ## API
 
-### analyze(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): Promise\<string\>
+### analyze(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string\>
 
 ```js
 import { analyze } from "@enjoyjs/node-mecab";
@@ -32,7 +32,7 @@ console.log(result);
 EOS
 ```
 
-### analyzeSync(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): string
+### analyzeSync(text: string, options?: [MecabOptions][mecaboptions]): string
 
 ```js
 import { analyzeSync } from "@enjoyjs/node-mecab";
@@ -41,7 +41,7 @@ const result = analyzeSync("こんにちは世界");
 console.log(result);
 ```
 
-### tokenize(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): Promise\<[Token](src/types.ts#L64-L112)[]\>
+### tokenize(text: string, options?: [MecabOptions][mecaboptions]): Promise\<[Token][token][]\>
 
 ```js
 import { tokenize } from "@enjoyjs/node-mecab";
@@ -109,7 +109,7 @@ console.log(result);
 ]
 ```
 
-### tokenizeSync(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): [Token](src/types.ts#L64-L112)[]
+### tokenizeSync(text: string, options?: [MecabOptions][mecaboptions]): [Token][token][]
 
 ```js
 import { tokenizeSync } from "@enjoyjs/node-mecab";
@@ -118,7 +118,7 @@ const result = tokenizeSync("こんにちは世界");
 console.log(result);
 ```
 
-### wakatsu(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): Promise\<string[][]\>
+### wakatsu(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string[][]\>
 
 ```js
 import { wakatsu } from "@enjoyjs/node-mecab";
@@ -131,7 +131,7 @@ console.log(result);
 [ [ 'こんにちは', '世界' ] ]
 ```
 
-### wakatsuSync(text: string, options?: [MecabOptions](src/types.ts#L10-L36)): string[][]
+### wakatsuSync(text: string, options?: [MecabOptions][mecaboptions]): string[][]
 
 ```js
 import { wakatsuSync } from "@enjoyjs/node-mecab";
@@ -148,3 +148,6 @@ Issue、Pull requestは日本語で構いません。
 ## ライセンス
 
 [MIT License](LICENSE)
+
+[mecaboptions]: src/types.ts#L10-L36
+[token]: src/types.ts#L64-L112
