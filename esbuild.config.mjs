@@ -7,7 +7,7 @@ const cjs = {
 	platform: 'node',
 	format: 'cjs',
 	mainFields: ['module', 'main'],
-	target: 'node12',
+	target: 'node16',
 	minify: true,
 };
 

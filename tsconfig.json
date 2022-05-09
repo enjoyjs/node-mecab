@@ -2,7 +2,7 @@
   "extends": "@enjoyjs/tsconfig",
   "include": ["src"],
   "compilerOptions": {
-    "module": "Node12",
+    "module": "Node16",
     "exactOptionalPropertyTypes": false
   }
 }
