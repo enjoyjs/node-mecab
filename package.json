@@ -39,6 +39,9 @@
     "url": "https://github.com/enjoyjs/node-mecab/issues"
   },
   "homepage": "https://github.com/enjoyjs/node-mecab#readme",
+  "engines": {
+    "node": ">=16"
+  },
   "devDependencies": {
     "@enjoyjs/tsconfig": "^3.0.1",
     "@types/node": "^16.11.33",
