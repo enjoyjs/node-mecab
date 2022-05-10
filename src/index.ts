@@ -8,6 +8,7 @@ export type {
 	Feature,
 	MecabOptions,
 	Stat,
+	Stats,
 	Token,
 	OutputFormatType,
 } from './types.js';
@@ -20,11 +21,20 @@ const mecabNaToUndefined = (text?: string): string | undefined => {
 };
 
 const getStat = (statId?: string): Stat => {
-	if (statId === undefined || statId === '') return 'UNKNOWN';
-	const stats: Stat[] = ['NORMAL', 'UNKNOWN', 'BOS', 'EOS'];
-	const id = Number(statId);
-	const stat = stats[id] ?? 'UNKNOWN';
-	return stat;
+	switch (statId) {
+		case '0':
+			return 'NORMAL';
+		case '1':
+			return 'UNKNOWN';
+		case '2':
+			return 'BOS';
+		case '3':
+			return 'EOS';
+		case '4':
+			return 'EON';
+		default:
+			return 'UNKNOWN';
+	}
 };
 
 const parseFeature = (feature?: string): Feature => {
@@ -88,8 +98,7 @@ const mecabCommand = (
 ): string => {
 	const input = quote(['echo', text]);
 	const mecab = quote(['mecab', ...dargs(options ?? {})]);
-	const command = `${input} | ${mecab}`;
-	return command;
+	return `${input} | ${mecab}`;
 };
 
 const analyze = async (
@@ -106,8 +115,7 @@ const analyzeSync = (
 	options?: Readonly<MecabOptions>,
 ): string => {
 	const command = mecabCommand(text, options);
-	const rawOutput = execSync(command, {encoding: 'utf8'});
-	return rawOutput;
+	return execSync(command, {encoding: 'utf8'});
 };
 
 const tokenize = async (
@@ -115,8 +123,7 @@ const tokenize = async (
 	options?: Readonly<MecabOptions>,
 ): Promise<Token[]> => {
 	const dump = await analyze(text, {...options, outputFormatType: 'dump'});
-	const tokens = parseDump(dump);
-	return tokens;
+	return parseDump(dump);
 };
 
 const tokenizeSync = (
@@ -124,8 +131,7 @@ const tokenizeSync = (
 	options?: Readonly<MecabOptions>,
 ): Token[] => {
 	const dump = analyzeSync(text, {...options, outputFormatType: 'dump'});
-	const tokens = parseDump(dump);
-	return tokens;
+	return parseDump(dump);
 };
 
 const wakatsu = async (

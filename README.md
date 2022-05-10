@@ -150,4 +150,4 @@ Issue、Pull requestは日本語で構いません。
 [MIT License](LICENSE)
 
 [mecaboptions]: src/types.ts#L10-L36
-[token]: src/types.ts#L64-L112
+[token]: src/types.ts#L66-L114

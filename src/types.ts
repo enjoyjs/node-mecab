@@ -59,7 +59,9 @@ export interface Feature {
 	pronunciation?: string;
 }
 
-export type Stat = 'NORMAL' | 'UNKNOWN' | 'BOS' | 'EOS';
+// Ref: https://github.com/taku910/mecab/blob/046fa78b2ed56fbd4fac312040f6d62fc1bc31e3/mecab/src/mecab.h#L218-L243
+export type Stats = readonly ['NORMAL', 'UNKNOWN', 'BOS', 'EOS', 'EON'];
+export type Stat = Stats[number];
 
 // Ref: http://taku910.github.io/mecab/bindings.html (Japanese)
 export interface Token {
