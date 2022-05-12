@@ -45,7 +45,6 @@
   "devDependencies": {
     "@enjoyjs/tsconfig": "^3.0.1",
     "@types/node": "^16.11.33",
-    "@types/shell-quote": "^1.7.1",
     "@types/xo": "^0.39.2",
     "esbuild": "^0.14.38",
     "eslint-plugin-security": "^1.5.0",
@@ -56,6 +55,6 @@
   },
   "dependencies": {
     "dargs": "^7.0.0",
-    "shell-quote": "^1.7.3"
+    "execa": "^5.1.1"
   }
 }
