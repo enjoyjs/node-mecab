@@ -1,7 +1,5 @@
-import {exec as _exec, execSync} from 'node:child_process';
-import {promisify} from 'node:util';
 import dargs from 'dargs';
-import {quote} from 'shell-quote';
+import execa from 'execa';
 import type {Feature, MecabOptions, Stat, Token} from './types.js';
 
 export type {
@@ -13,8 +11,6 @@ export type {
 	OutputFormatType,
 } from './types.js';
 export {analyze, analyzeSync, tokenize, tokenizeSync, wakatsu, wakatsuSync};
-
-const exec = promisify(_exec);
 
 const mecabNaToUndefined = (text?: string): string | undefined => {
 	return text === '*' ? undefined : text;
@@ -66,56 +62,43 @@ const parseFeature = (feature?: string): Feature => {
 };
 
 const parseDump = (dump: string): Token[] => {
-	return dump
-		.trim()
-		.split('\n')
-		.map<Token>((row) => {
-			const values = row.split(' ');
-			return {
-				id: Number(values[0]),
-				surface: values[1] ?? '',
-				feature: parseFeature(values[2]),
-				startPosition: Number(values[3]),
-				endPosition: Number(values[4]),
-				rcAttr: Number(values[5]),
-				lcAttr: Number(values[6]),
-				posid: Number(values[7]),
-				charType: Number(values[8]),
-				stat: getStat(values[9]),
-				isbest: Boolean(Number(values[10])),
-				alpha: Number(values[11]),
-				beta: Number(values[12]),
-				prob: Number(values[13]),
-				cost: Number(values[14]),
-				_: values.slice(15),
-			};
-		});
-};
-
-const mecabCommand = (
-	text: string,
-	options?: Readonly<MecabOptions>,
-): string => {
-	const input = quote(['echo', text]);
-	const mecab = quote(['mecab', ...dargs(options ?? {})]);
-	return `${input} | ${mecab}`;
+	return dump.split('\n').map<Token>((row) => {
+		const values = row.split(' ');
+		return {
+			id: Number(values[0]),
+			surface: values[1] ?? '',
+			feature: parseFeature(values[2]),
+			startPosition: Number(values[3]),
+			endPosition: Number(values[4]),
+			rcAttr: Number(values[5]),
+			lcAttr: Number(values[6]),
+			posid: Number(values[7]),
+			charType: Number(values[8]),
+			stat: getStat(values[9]),
+			isbest: Boolean(Number(values[10])),
+			alpha: Number(values[11]),
+			beta: Number(values[12]),
+			prob: Number(values[13]),
+			cost: Number(values[14]),
+			_: values.slice(15),
+		};
+	});
 };
 
 const analyze = async (
 	text: string,
-	options?: Readonly<MecabOptions>,
+	options: Readonly<MecabOptions> = {},
 ): Promise<string> => {
-	const command = mecabCommand(text, options);
-	const {stdout: rawOutput} = await exec(command);
-	return rawOutput;
+	const {stdout} = await execa('mecab', dargs(options), {input: text});
+	return stdout;
 };
 
 const analyzeSync = (
 	text: string,
-	options?: Readonly<MecabOptions>,
+	options: Readonly<MecabOptions> = {},
 ): string => {
-	const command = mecabCommand(text, options);
-	return execSync(command, {encoding: 'utf8'});
+	const {stdout} = execa.sync('mecab', dargs(options), {input: text});
+	return stdout;
 };
 
 const tokenize = async (
@@ -139,10 +122,7 @@ const wakatsu = async (
 	options?: Readonly<MecabOptions>,
 ): Promise<string[][]> => {
 	const wakati = await analyze(text, {...options, outputFormatType: 'wakati'});
-	return wakati
-		.trim()
-		.split('\n')
-		.map((row) => row.trim().split(' '));
+	return wakati.split('\n').map((row) => row.trim().split(' '));
 };
 
 const wakatsuSync = (
@@ -150,8 +130,5 @@ const wakatsuSync = (
 	options?: Readonly<MecabOptions>,
 ): string[][] => {
 	const wakati = analyzeSync(text, {...options, outputFormatType: 'wakati'});
-	return wakati
-		.trim()
-		.split('\n')
-		.map((row) => row.trim().split(' '));
+	return wakati.split('\n').map((row) => row.trim().split(' '));
 };
