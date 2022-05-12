@@ -4,5 +4,9 @@
   "compilerOptions": {
     "module": "Node16",
     "exactOptionalPropertyTypes": false
+  },
+  "ts-node": {
+    "esm": true,
+    "swc": true
   }
 }
