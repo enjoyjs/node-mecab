@@ -17,14 +17,17 @@
     "src/"
   ],
   "scripts": {
-    "build": "run-p build:*",
-    "build:main": "node esbuild.config.mjs",
+    "build": "run-p -cl --aggregate-output build:*",
+    "build:main": "ts-node esbuild.config.ts",
     "build:types": "tsc -p tsconfig.types.json",
-    "test": "run-s test:*",
+    "test": "run-p -cl --aggregate-output test:*",
     "test:cjs": "node test/index.cjs",
     "test:esm": "node test/index.mjs",
-    "lint": "tsc --noEmit && xo",
-    "lint:fix": "tsc --noEmit && xo --fix"
+    "lint": "run-p -cl --aggregate-output lint:*",
+    "lint:tsc": "tsc --noEmit",
+    "lint:xo": "xo",
+    "fix": "run-p -cl --aggregate-output lint:tsc fix:xo",
+    "fix:xo": "xo --fix"
   },
   "repository": {
     "type": "git",
@@ -44,13 +47,15 @@
   },
   "devDependencies": {
     "@enjoyjs/tsconfig": "^3.0.1",
+    "@swc/core": "^1.2.182",
     "@types/node": "^16.11.33",
     "@types/xo": "^0.39.2",
     "esbuild": "^0.14.38",
     "eslint-plugin-security": "^1.5.0",
     "eslint-plugin-sonarjs": "^0.13.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.7.0-beta",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.7.1-rc",
     "xo": "^0.48.0"
   },
   "dependencies": {
