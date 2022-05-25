@@ -1,12 +1,13 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js Lint
+name: Node.js CI
 
 on:
   push:
     branches:
       - "**"
+  workflow_call:
 
 jobs:
   build:
@@ -14,14 +15,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version:
+          # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+          - 16
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install MeCab
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends mecab
+          mecab --version
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
       - run: npm ci
+      - run: npm run build --if-present
       - run: npm run lint --if-present
+      - run: npm test
