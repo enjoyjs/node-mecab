@@ -46,7 +46,7 @@
     "node": ">=16"
   },
   "devDependencies": {
-    "@enjoyjs/tsconfig": "^3.0.1",
+    "@enjoyjs/tsconfig": "^4.0.0",
     "@swc/core": "^1.2.196",
     "@types/node": "^16.11.33",
     "@types/xo": "^0.39.2",
