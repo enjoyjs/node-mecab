@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@enjoyjs/tsconfig": "^3.0.1",
-    "@swc/core": "^1.2.194",
+    "@swc/core": "^1.2.196",
     "@types/node": "^16.11.33",
     "@types/xo": "^0.39.2",
     "esbuild": "^0.14.39",
