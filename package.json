@@ -49,7 +49,7 @@
     "@enjoyjs/tsconfig": "^4.0.0",
     "@swc/core": "^1.2.197",
     "@types/node": "^16.11.33",
-    "@types/xo": "^0.39.2",
+    "@types/xo": "^0.39.3",
     "esbuild": "^0.14.43",
     "eslint-plugin-security": "^1.5.0",
     "eslint-plugin-sonarjs": "^0.13.0",
