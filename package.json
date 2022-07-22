@@ -43,12 +43,12 @@
   },
   "homepage": "https://github.com/enjoyjs/node-mecab#readme",
   "engines": {
-    "node": ">=16"
+    "node": ">=v16.16.0"
   },
   "devDependencies": {
     "@enjoyjs/tsconfig": "^4.0.0",
     "@swc/core": "^1.2.218",
-    "@types/node": "^16.11.33",
+    "@types/node": "^16.11.45",
     "@types/xo": "^0.39.3",
     "esbuild": "^0.14.49",
     "eslint-plugin-security": "^1.5.0",
