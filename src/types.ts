@@ -37,7 +37,7 @@ export interface MecabOptions {
 
 // Ref: https://taku910.github.io/mecab/#usage-tools (Japanese)
 export interface Feature {
-	// 品詞
+	// 品詞 (part of speech)
 	pos?: string;
 
 	// 品詞細分類1, 品詞細分類2, 品詞細分類3

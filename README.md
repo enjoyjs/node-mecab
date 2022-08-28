@@ -2,14 +2,13 @@
 
 MeCab wrapper for Node.js
 
-## 前提条件
+## Dependencies
 
-MeCabがインストールされている必要があります。
+- MeCab
+  - [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](https://taku910.github.io/mecab/)
+  - [taku910/mecab: Yet another Japanese morphological analyzer](https://github.com/taku910/mecab)
 
-- [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](https://taku910.github.io/mecab/)
-- [taku910/mecab: Yet another Japanese morphological analyzer](https://github.com/taku910/mecab)
-
-## インストール
+## Install
 
 ```bash
 npm i @enjoyjs/node-mecab
@@ -41,6 +40,8 @@ const result = analyzeSync("こんにちは世界");
 console.log(result);
 ```
 
+---
+
 ### tokenize(text: string, options?: [MecabOptions][mecaboptions]): Promise\<[Token][token][]\>
 
 ```js
@@ -58,7 +59,7 @@ console.log(result);
     surface: 'こんにちは',
     feature: {
       pos: '感動詞',
-      posSubs: [Array],
+      posSubs: [ undefined, undefined, undefined ],
       conjugatedType: undefined,
       conjugatedForm: undefined,
       basicForm: 'こんにちは',
@@ -84,7 +85,7 @@ console.log(result);
     surface: '世界',
     feature: {
       pos: '名詞',
-      posSubs: [Array],
+      posSubs: [ '一般', undefined, undefined ],
       conjugatedType: undefined,
       conjugatedForm: undefined,
       basicForm: '世界',
@@ -118,12 +119,14 @@ const result = tokenizeSync("こんにちは世界");
 console.log(result);
 ```
 
-### wakatsu(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string[][]\>
+---
+
+### wakati(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string[][]\>
 
 ```js
-import { wakatsu } from "@enjoyjs/node-mecab";
+import { wakati } from "@enjoyjs/node-mecab";
 
-const result = await wakatsu("こんにちは世界");
+const result = await wakati("こんにちは世界");
 console.log(result);
 ```
 
@@ -131,12 +134,12 @@ console.log(result);
 [ [ 'こんにちは', '世界' ] ]
 ```
 
-### wakatsuSync(text: string, options?: [MecabOptions][mecaboptions]): string[][]
+### wakatiSync(text: string, options?: [MecabOptions][mecaboptions]): string[][]
 
 ```js
-import { wakatsuSync } from "@enjoyjs/node-mecab";
+import { wakatiSync } from "@enjoyjs/node-mecab";
 
-const result = wakatsuSync("こんにちは世界");
+const result = wakatiSync("こんにちは世界");
 console.log(result);
 ```
 
@@ -145,7 +148,7 @@ console.log(result);
 Issue、Pull requestは日本語で構いません。
 不具合等ありましたらPull requestを投げていただけると幸いです。
 
-## ライセンス
+## License
 
 [MIT License](LICENSE)
 

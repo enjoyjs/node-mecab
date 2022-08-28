@@ -2,6 +2,8 @@ import {build, BuildOptions} from 'esbuild';
 
 const cjs: BuildOptions = {
 	entryPoints: ['./src/index.ts'],
+	bundle: true,
+	external: ['dargs', 'execa'],
 	outfile: './lib/index.cjs',
 	platform: 'node',
 	format: 'cjs',
