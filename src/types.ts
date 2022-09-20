@@ -9,7 +9,7 @@ export type OutputFormatType =
 
 // Ref 1: `mecab --help`
 // Ref 2: http://www.mwsoft.jp/programming/munou/mecab_command.html (Japanese)
-export interface MecabOptions {
+export type MecabOptions = {
 	rcfile?: string;
 	dicdir?: string;
 	userdic?: string;
@@ -33,10 +33,10 @@ export interface MecabOptions {
 	theta?: number;
 	costFactor?: number;
 	output?: string;
-}
+};
 
 // Ref: https://taku910.github.io/mecab/#usage-tools (Japanese)
-export interface Feature {
+export type Feature = {
 	// 品詞 (part of speech)
 	pos?: string;
 
@@ -57,14 +57,14 @@ export interface Feature {
 
 	// 発音
 	pronunciation?: string;
-}
+};
 
 // Ref: https://github.com/taku910/mecab/blob/046fa78b2ed56fbd4fac312040f6d62fc1bc31e3/mecab/src/mecab.h#L218-L243
 export type Stats = readonly ['NORMAL', 'UNKNOWN', 'BOS', 'EOS', 'EON'];
 export type Stat = Stats[number];
 
 // Ref: http://taku910.github.io/mecab/bindings.html (Japanese)
-export interface Token {
+export type Token = {
 	// Node id
 	id: number;
 
@@ -111,4 +111,4 @@ export interface Token {
 	cost: number;
 
 	_: string[];
-}
+};
