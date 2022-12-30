@@ -7,17 +7,28 @@ export const mecabNaToUndefined = (text?: string): string | undefined => {
 
 export const getStat = (statId?: string): Stat => {
 	switch (statId) {
-		case '0':
+		case '0': {
 			return 'NORMAL';
-		case '1':
+		}
+
+		case '1': {
 			return 'UNKNOWN';
-		case '2':
+		}
+
+		case '2': {
 			return 'BOS';
-		case '3':
+		}
+
+		case '3': {
 			return 'EOS';
-		case '4':
+		}
+
+		case '4': {
 			return 'EON';
-		default:
+		}
+
+		default: {
 			return 'UNKNOWN';
+		}
 	}
 };
