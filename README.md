@@ -2,7 +2,7 @@
 
 MeCab wrapper for Node.js
 
-## Dependencies
+## Requirements
 
 - MeCab
   - [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](https://taku910.github.io/mecab/)
