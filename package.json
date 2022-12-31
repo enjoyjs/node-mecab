@@ -61,6 +61,6 @@
   },
   "dependencies": {
     "dargs": "^7.0.0",
-    "execa": "^5.1.1"
+    "execa": "^6.1.0"
   }
 }
