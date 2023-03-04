@@ -48,7 +48,7 @@
   "packageManager": "npm@9.5.1",
   "devDependencies": {
     "@enjoyjs/tsconfig": "^4.0.0",
-    "@swc/core": "^1.3.36",
+    "@swc/core": "^1.3.37",
     "@types/node": "^18.14.0",
     "@types/xo": "^0.39.5",
     "esbuild": "^0.16.17",
