@@ -45,7 +45,7 @@
   "engines": {
     "node": ">=v18.15.0"
   },
-  "packageManager": "npm@9.6.4",
+  "packageManager": "npm@10.9.2",
   "devDependencies": {
     "@enjoyjs/tsconfig": "^5.0.0",
     "@swc/core": "^1.3.82",
