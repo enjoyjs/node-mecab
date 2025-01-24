@@ -43,7 +43,7 @@
   },
   "homepage": "https://github.com/enjoyjs/node-mecab#readme",
   "engines": {
-    "node": ">=v18.15.0"
+    "node": ">=18.20.6"
   },
   "packageManager": "npm@9.6.4",
   "devDependencies": {
